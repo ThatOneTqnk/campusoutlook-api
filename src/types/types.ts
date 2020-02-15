@@ -8,12 +8,19 @@ export default gql`
     }    
 
     type Event {
+        uuid: String
         name: String
         description: String
-        time: TimeInfo
+        createTime: TimeInfo
+        eventTime: TimeInfo
     }
 
     type Query {
         getAllEvents: [Event]
+        getEvent(UUID: String!): Event
+    }
+
+    type Mutation {
+        createEvent(title: String!): Event
     }
 `;
