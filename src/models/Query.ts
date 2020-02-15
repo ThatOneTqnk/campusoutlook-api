@@ -10,6 +10,13 @@ let resolvers : IResolverObject = {
             console.error(e);
         }
         return totalEvents;
+    },
+    getEvent: async (parent, args) => {
+        let foundEvent = null;
+        try {
+            foundEvent = await OutlookEvents.findById(args.id); 
+        } catch (e) {}
+        return foundEvent;
     }
 };
 
