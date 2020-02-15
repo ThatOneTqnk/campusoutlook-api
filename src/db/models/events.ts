@@ -7,7 +7,10 @@ let OutlookEvent = new Schema({
     time: {
         start: Number,
         end: Number
-    }
+    },
+    tags: [{
+        type: String
+    }]
 });
 
 export default mongoose.model('outlook_event', OutlookEvent);

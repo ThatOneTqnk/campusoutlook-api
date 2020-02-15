@@ -13,6 +13,7 @@ type Event {
     name: String
     description: String
     time: TimeInfo
+    tags: [String!]
 }
 
 type Query {
@@ -21,7 +22,7 @@ type Query {
 }
 
 type Mutation {
-    createEvent(name: String!, description: String!, timeobj: TimeInfoInput!): Event
+    createEvent(name: String!, description: String!, timeobj: TimeInfoInput!, tags: [String!]): Event
 }
 
 type Subscription {
