@@ -1,6 +1,10 @@
 import { IResolverObject } from "graphql-tools";
 import OutlookEvents from '../db/models/events';
 
+const { PubSub } = require('apollo-server');
+const pubsub = new PubSub();
+const EVENT_ADDED = 'EVENT_ADDED';
+
 let resolvers : IResolverObject = {
     createEvent: async (parent, args) => {
         let outlookEvent;
@@ -9,6 +13,7 @@ let resolvers : IResolverObject = {
                 start: args.timeobj.start,
                 end: args.timeobj.end
             }});
+            pubsub.publish(EVENT_ADDED, { eventAdded: args });
         } catch(e) {
             console.error(e);
         }
