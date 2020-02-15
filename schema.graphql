@@ -16,10 +16,14 @@ type Event {
 }
 
 type Query {
-    getAllEvents: [Event]
-    getEvent(id: String!): Event
+    events: [Event]
+    event(id: String!): Event
 }
 
 type Mutation {
     createEvent(name: String!, description: String!, timeobj: TimeInfoInput!): Event
+}
+
+type Subscription {
+    eventFeed: Event
 }

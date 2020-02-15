@@ -7,10 +7,10 @@ const EVENT_ADDED = 'EVENT_ADDED';
 
 
 let resolvers : IResolverObject = {
-    eventAdded: {
-        // Additional event labels can be passed to asyncIterator creation
-        subscribe: () => pubsub.asyncIterator([EVENT_ADDED]),
-    },
+    // eventAdded: {
+    //     // Additional event labels can be passed to asyncIterator creation
+    //     subscribe: () => pubsub.asyncIterator([EVENT_ADDED]),
+    // },
 };
 
 export default resolvers;
