@@ -1,16 +1,15 @@
 import { IResolverObject } from "graphql-tools";
+import OutlookEvents from '../db/models/events';
+
 let resolvers : IResolverObject = {
     getAllEvents: async () => {
-        return [
-            {
-                "name": "UChicago Test",
-                "description": "Testing the events resolver",
-                "time": {
-                    "start": 1581791489,
-                    "end": 1581792489
-                }
-            }
-        ]
+        let totalEvents;
+        try {
+            totalEvents = await OutlookEvents.find();
+        } catch (e) {
+            console.error(e);
+        }
+        return totalEvents;
     }
 };
 

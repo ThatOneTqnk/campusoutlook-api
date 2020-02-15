@@ -1,17 +1,7 @@
 import { ApolloServer, gql } from 'apollo-server';
 import qlTypes from '../types/types';
 import queryResolvers from '../models/Query';
-
-const fakeData = [
-    {
-        "name": "UChicago Test",
-        "description": "Testing the events resolver",
-        "time": {
-            "start": 1581791489,
-            "end": 1581792489
-        }
-    }
-];
+import { AppConfig } from '../app';
 
 export default class ApolloImpl {
     apolloServer: ApolloServer
@@ -26,7 +16,7 @@ export default class ApolloImpl {
     }
 
     start() {
-        this.apolloServer.listen().then(({ url }) => {
+        this.apolloServer.listen({port: ((process.env.NODE_ENV || 'dev') == 'dev') ? AppConfig.port.devPort : AppConfig.port.prodPort}).then(({ url }) => {
             console.log(`Apollo Server up at ${url}`)
         });
     }
