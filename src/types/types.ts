@@ -11,8 +11,7 @@ export default gql`
         uuid: String
         name: String
         description: String
-        createTime: TimeInfo
-        eventTime: TimeInfo
+        time: TimeInfo
     }
 
     type Query {
