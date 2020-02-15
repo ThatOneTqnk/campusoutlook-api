@@ -16,7 +16,7 @@ export default class ApolloImpl {
     }
 
     start() {
-        this.apolloServer.listen({port: ((process.env.NODE_ENV || 'dev') == 'dev') ? AppConfig.port.devPort : AppConfig.port.prodPort}).then(({ url }) => {
+        this.apolloServer.listen({port: AppConfig.port}).then(({ url }) => {
             console.log(`Apollo Server up at ${url}`)
         });
     }
