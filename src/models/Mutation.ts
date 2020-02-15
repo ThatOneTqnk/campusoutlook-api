@@ -1,12 +1,11 @@
 import { IResolverObject } from "graphql-tools";
 import OutlookEvents from '../db/models/events';
+import { pubSub } from "../apollo/apollo_impl";
+import { EVENT_ADDED } from "./Subscription";
 
 function normalizeTags(tags: String[]) : String[] {
-    return [];
+    return tags;
 } 
-const { PubSub } = require('apollo-server');
-const pubsub = new PubSub();
-const EVENT_ADDED = 'EVENT_ADDED';
 
 let resolvers : IResolverObject = {
     createEvent: async (parent, args) => {
@@ -17,7 +16,7 @@ let resolvers : IResolverObject = {
                 start: args.timeobj.start,
                 end: args.timeobj.end
             }, tags: normalizeTags});
-            pubsub.publish(EVENT_ADDED, { eventAdded: args });
+            pubSub.publish(EVENT_ADDED, { eventFeed: args });
         } catch(e) {
             console.error(e);
         }

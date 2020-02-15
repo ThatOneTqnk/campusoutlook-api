@@ -2,7 +2,11 @@ import { ApolloServer, gql } from 'apollo-server';
 import qlTypes from '../types/types';
 import queryResolvers from '../models/Query';
 import mutationResolvers from '../models/Mutation';
+import subscriptionFeeds from '../models/Subscription';
 import { AppConfig } from '../app';
+import { PubSub } from 'apollo-server';
+
+let pubSubInstance : PubSub;
 
 export default class ApolloImpl {
     apolloServer: ApolloServer
@@ -12,14 +16,18 @@ export default class ApolloImpl {
             typeDefs: qlTypes,
             resolvers: {
                 Query: queryResolvers,
-                Mutation: mutationResolvers
+                Mutation: mutationResolvers,
+                Subscription: subscriptionFeeds
             }
         });
     }
 
     start() {
+        pubSubInstance = new PubSub();
         this.apolloServer.listen({port: AppConfig.port}).then(({ url }) => {
             console.log(`Apollo Server up at ${url}`)
         });
     }
 }
+
+export {pubSubInstance as pubSub};

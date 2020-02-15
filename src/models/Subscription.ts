@@ -1,16 +1,15 @@
 import { IResolverObject } from "graphql-tools";
 import OutlookEvents from '../db/models/events';
-const { PubSub } = require('apollo-server');
+import { pubSub } from "../apollo/apollo_impl";
 
-const pubsub = new PubSub();
-const EVENT_ADDED = 'EVENT_ADDED';
+export const EVENT_ADDED = 'EVENT_ADDED';
 
 
 let resolvers : IResolverObject = {
-    // eventAdded: {
-    //     // Additional event labels can be passed to asyncIterator creation
-    //     subscribe: () => pubsub.asyncIterator([EVENT_ADDED]),
-    // },
+    eventFeed: {
+        // Additional event labels can be passed to asyncIterator creation
+        subscribe: () => pubSub.asyncIterator([EVENT_ADDED])
+    },
 };
 
 export default resolvers;
