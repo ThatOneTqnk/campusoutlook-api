@@ -1,4 +1,25 @@
-type EventRes {
+input TimeInfoInput {
+    start: Int
+    end: Int
+}
+
+type TimeInfo {
+    start: Int
+    end: Int
+}
+
+type Event {
+    id: String
     name: String
     description: String
+    time: TimeInfo
+}
+
+type Query {
+    getAllEvents: [Event]
+    getEvent(id: String!): Event
+}
+
+type Mutation {
+    createEvent(name: String!, description: String!, timeobj: TimeInfoInput!): Event
 }
