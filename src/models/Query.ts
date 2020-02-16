@@ -10,7 +10,7 @@ let resolvers : IResolverObject = {
         } catch (e) {
             console.error(e);
         }
-        return totalEvents;
+        return databaseClient.sortEvents(totalEvents);
     },
     event: async (parent, args) => {
         let foundEvent;
@@ -38,7 +38,7 @@ let resolvers : IResolverObject = {
         } catch (e) {
             return [];
         }
-        return events;
+        return databaseClient.sortEvents(events);
     },
     eventsByTags: async (parent, args) => {
         let events;
@@ -47,7 +47,7 @@ let resolvers : IResolverObject = {
         } catch (e) {
             return [];
         }
-        return events;
+        return databaseClient.sortEvents(events);
     }
 };
 

@@ -32,4 +32,11 @@ export default class DatabaseClient {
             resolve(taggedEvents);
         });
     }
+
+    sortEvents(eventArr) {
+      const currentTime = Date.now() / 1000;
+      const filteredArr = eventArr.filter(obj => obj.time.start >= currentTime);
+      filteredArr.sort((a, b) => a.time.start <= b.time.start);
+      return filteredArr; 
+    }
 }
