@@ -1,12 +1,19 @@
+
+import { AppConfig, databaseClient } from "../app";
 import { IResolverObject } from "graphql-tools";
 import OutlookEvents from '../db/models/events';
 import { pubSub } from "../apollo/apollo_impl";
 import { EVENT_ADDED } from "./Subscription";
-import { databaseClient } from "../app";
-import mongoose from "mongoose";
 import { Storage } from '@google-cloud/storage';
 
-const storage = new Storage();
+console.log('yeet', AppConfig);
+
+const storage = new Storage({
+  credentials: {
+    "client_email": AppConfig.storage.email,
+    "private_key": AppConfig.storage.privateKey,
+  }
+});
 
 
 function normalizeTags(tags : String[]) : String[] {

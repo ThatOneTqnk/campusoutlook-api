@@ -2,7 +2,9 @@ import ApolloImpl from './apollo/apollo_impl';
 import DatabaseClient from './db/dbclient';
 let dbClient : DatabaseClient;
 
-let config;
+let config : any = {};
+
+
 try {
   config = require('./config.json');
 } catch(e) {
