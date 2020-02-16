@@ -12,7 +12,6 @@ let OutlookEvent = new Schema({
         type: String
     }],
     attendees: [{
-        id: String,
         first_name: String,
         last_name: String,
         email: String,

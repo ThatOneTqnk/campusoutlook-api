@@ -11,10 +11,9 @@ export default class DatabaseClient {
 
     getEventById(id : string) {
         return new Promise(async (resolve, reject) => {
-            let foundEvent;
             OutlookEvents.findById(id, (err, doc) => {
               if (doc) {
-                resolve(foundEvent);
+                resolve(doc);
               }  else {
                 resolve(null);
               }

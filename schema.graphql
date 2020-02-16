@@ -9,7 +9,6 @@ type TimeInfo {
 }
 
 input AttendeeInput {
-    id: String
     first_name: String!
     last_name: String!
     email: String
@@ -17,7 +16,6 @@ input AttendeeInput {
 }
 
 type Attendee {
-    id: String
     first_name: String!
     last_name: String!
     email: String
