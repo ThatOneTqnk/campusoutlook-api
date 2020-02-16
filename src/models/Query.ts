@@ -12,7 +12,7 @@ let resolvers : IResolverObject = {
         return totalEvents;
     },
     event: async (parent, args) => {
-        let foundEvent = null;
+        let foundEvent;
         try {
             foundEvent = await OutlookEvents.findById(args.id); 
         } catch (e) {}
