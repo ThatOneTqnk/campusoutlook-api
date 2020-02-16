@@ -26,36 +26,36 @@ function getPublicUrl(gcsname: String, bucket: String) {
 let resolvers : IResolverObject = {
     createEvent: async (parent, args) => {
         const normalizedTags : String[] = normalizeTags(args.tags);
-        const gcsurl = await new Promise(async (resolve, reject) => {
-            args.event_photo.then((file) => {
+        // const gcsurl = await new Promise(async (resolve, reject) => {
+        //     args.event_photo.then((file) => {
                 
-                const { stream, filename, mimetype, encoding } = file;
-                const gcsname = uuidv4().toString() + '-' + filename;
-                const bucket_file = bucket.file(gcsname); // TO-DO: Fix file upload names
+        //         const { stream, filename, mimetype, encoding } = file;
+        //         const gcsname = uuidv4().toString() + '-' + filename;
+        //         const bucket_file = bucket.file(gcsname); // TO-DO: Fix file upload names
                 
-                const ws = bucket_file.createWriteStream({
-                    metadata: {
-                      contentType: mimetype
-                    },
-                    resumable: false
-                })
+        //         const ws = bucket_file.createWriteStream({
+        //             metadata: {
+        //               contentType: mimetype
+        //             },
+        //             resumable: false
+        //         })
                 
-                file.pipe(ws).on('finish', () => {
-                    bucket_file.makePublic(function(err, apiResponse) {
-                        console.log(apiResponse[0]);
-                        resolve(getPublicUrl(gcsname, AppConfig.storage.bucket))
-                    });
-                });
+        //         file.pipe(ws).on('finish', () => {
+        //             bucket_file.makePublic(function(err, apiResponse) {
+        //                 console.log(apiResponse[0]);
+        //                 resolve(getPublicUrl(gcsname, AppConfig.storage.bucket))
+        //             });
+        //         });
 
-            });
-        })
+        //     });
+        // })
         
         let outlookEvent;
         try {
             outlookEvent = await OutlookEvents.create({name: args.name, description: args.description, time: {
                 start: args.timeobj.start,
                 end: args.timeobj.end
-            }, tags: normalizedTags, attendees: []});
+            }, tags: normalizedTags, attendees: [], image_url: args.event_photo_url});
             pubSub.publish(EVENT_ADDED, { eventFeed: args });
         } catch(e) {
             console.error(e);

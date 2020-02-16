@@ -16,7 +16,8 @@ let OutlookEvent = new Schema({
         last_name: String,
         email: String,
         phone_number: String,
-    }]
+    }],
+    image_url: String
 });
 
 export default mongoose.model('outlook_event', OutlookEvent);
