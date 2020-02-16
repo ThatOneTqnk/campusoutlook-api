@@ -18,7 +18,9 @@ export default class ApolloImpl {
                 Query: queryResolvers,
                 Mutation: mutationResolvers,
                 Subscription: subscriptionFeeds
-            }
+            },
+            introspection: true,
+            playground: true,
         });
     }
 
