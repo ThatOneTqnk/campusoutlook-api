@@ -1,7 +1,21 @@
-import config from './config.json';
 import ApolloImpl from './apollo/apollo_impl';
 import DatabaseClient from './db/dbclient';
 let dbClient : DatabaseClient;
+
+let config;
+try {
+  config = require('./config.json');
+} catch(e) {
+  config = {
+    "port": process.env.PORT,
+    "database": {
+        "username": process.env.DB_USERNAME,
+        "password": process.env.DB_PASSWORD,
+        "host": process.env.DB_HOST
+    }
+  }
+}
+
 
 (async () => {
     dbClient = new DatabaseClient(config.database.username, config.database.password, config.database.host);

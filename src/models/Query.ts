@@ -13,7 +13,11 @@ let resolvers : IResolverObject = {
         return totalEvents;
     },
     event: async (parent, args) => {
-        return await databaseClient.getEventById(args.id);
+        let foundEvent;
+        try {
+            foundEvent = await OutlookEvents.findById(args.id); 
+        } catch (e) {}
+        return foundEvent;
     }
 };
 
