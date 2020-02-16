@@ -25,6 +25,29 @@ let resolvers : IResolverObject = {
           tags = await OutlookEvents.distinct('tags');
         } catch(e) {return null}
         return tags;
+    },
+    recommendedEvents: async (parent, args) => {
+        let tagAggregator : any[] = [];
+        for (let interest of args.interests) {
+            if (interest === 'cs') tagAggregator.push('cs');
+        }
+        if (tagAggregator.length == 0) return [];
+        let events;
+        try {
+            events = await databaseClient.getEventsFromTags(tagAggregator);
+        } catch (e) {
+            return [];
+        }
+        return events;
+    },
+    eventsByTags: async (parent, args) => {
+        let events;
+        try {
+            events = await databaseClient.getEventsFromTags(args.tags);
+        } catch (e) {
+            return [];
+        }
+        return events;
     }
 };
 
