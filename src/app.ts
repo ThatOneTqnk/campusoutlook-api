@@ -1,10 +1,7 @@
-import ApolloImpl from './apollo/apollo_impl';
 import DatabaseClient from './db/dbclient';
 let dbClient : DatabaseClient;
 
-let config : any = {};
-
-
+let config;
 try {
   config = require('./config.json');
 } catch(e) {
@@ -17,12 +14,13 @@ try {
     },
     "storage": {
       "email": process.env.STORAGE_EMAIL,
-      "privateKey": process.env.STORAGE_PRIVATE_KEY
+      "privateKey": process.env.STORAGE_PRIVATE_KEY,
+      "bucket": process.env.STORAGE_BUCKET
     }
   }
 }
 
-
+import ApolloImpl from './apollo/apollo_impl';
 (async () => {
     dbClient = new DatabaseClient(config.database.username, config.database.password, config.database.host);
     new ApolloImpl().start();
