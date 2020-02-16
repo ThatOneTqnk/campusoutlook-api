@@ -4,6 +4,10 @@ import { pubSub } from "../apollo/apollo_impl";
 import { EVENT_ADDED } from "./Subscription";
 import { databaseClient } from "../app";
 import mongoose from "mongoose";
+import { Storage } from '@google-cloud/storage';
+
+const storage = new Storage();
+
 
 function normalizeTags(tags : String[]) : String[] {
     return tags;
@@ -12,6 +16,9 @@ function normalizeTags(tags : String[]) : String[] {
 let resolvers : IResolverObject = {
     createEvent: async (parent, args) => {
         const normalizedTags : String[] = normalizeTags(args.tags);
+        args.event_photo.then((file) => {
+
+        });
         let outlookEvent;
         try {
             outlookEvent = await OutlookEvents.create({name: args.name, description: args.description, time: {

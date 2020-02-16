@@ -12,6 +12,10 @@ try {
         "username": process.env.DB_USERNAME,
         "password": process.env.DB_PASSWORD,
         "host": process.env.DB_HOST
+    },
+    "storage": {
+      "email": process.env.STORAGE_EMAIL,
+      "privateKey": process.env.STORAGE_PRIVATE_KEY
     }
   }
 }

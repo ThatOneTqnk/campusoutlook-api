@@ -15,7 +15,7 @@ let OutlookEvent = new Schema({
         first_name: String,
         last_name: String,
         email: String,
-        phone_number: String
+        phone_number: String,
     }]
 });
 
