@@ -11,11 +11,14 @@ export default class DatabaseClient {
 
     getEventById(id : string) {
         return new Promise(async (resolve, reject) => {
-            let foundEvent = null;
-            try {
-                foundEvent = await OutlookEvents.findById(id); 
-            } catch (e) {}
-            resolve(foundEvent);
+            let foundEvent;
+            OutlookEvents.findById(id, (err, doc) => {
+              if (doc) {
+                resolve(foundEvent);
+              }  else {
+                resolve(null);
+              }
+            }); 
         })
     }
 }
