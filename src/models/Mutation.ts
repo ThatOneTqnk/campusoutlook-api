@@ -28,7 +28,7 @@ let resolvers : IResolverObject = {
         const foundEvent : any = await databaseClient.getEventById(args.eventID);
         if (foundEvent == null) return false;
         let attendeesArr = (foundEvent.attendees) ? foundEvent.attendees : [];
-        attendeesArr.push(args.userID)
+        attendeesArr.push(args.user);
         foundEvent.attendees = attendeesArr;
         foundEvent.save((err : any, updated : any) => {});
         return true;

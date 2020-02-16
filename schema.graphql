@@ -8,13 +8,29 @@ type TimeInfo {
     end: Int
 }
 
+input AttendeeInput {
+    id: String
+    first_name: String!
+    last_name: String!
+    email: String
+    phone_number: String
+}
+
+type Attendee {
+    id: String
+    first_name: String!
+    last_name: String!
+    email: String
+    phone_number: String
+}
+
 type Event {
     id: String
     name: String
     description: String
     time: TimeInfo
     tags: [String!]
-    attendees: [String!]
+    attendees: [Attendee!]
 }
 
 type Query {
@@ -24,7 +40,7 @@ type Query {
 
 type Mutation {
     createEvent(name: String!, description: String!, timeobj: TimeInfoInput!, tags: [String!]): Event
-    joinEvent(userID: String!, eventID: String!): Boolean
+    joinEvent(user: AttendeeInput!, eventID: String!): Boolean
 }
 
 type Subscription {
