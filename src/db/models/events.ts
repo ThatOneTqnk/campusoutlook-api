@@ -10,6 +10,9 @@ let OutlookEvent = new Schema({
     },
     tags: [{
         type: String
+    }],
+    attendees: [{
+        type: String
     }]
 });
 

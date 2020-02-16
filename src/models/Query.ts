@@ -1,5 +1,6 @@
 import { IResolverObject } from "graphql-tools";
 import OutlookEvents from '../db/models/events';
+import { databaseClient } from "../app";
 
 let resolvers : IResolverObject = {
     events: async () => {
@@ -12,11 +13,7 @@ let resolvers : IResolverObject = {
         return totalEvents;
     },
     event: async (parent, args) => {
-        let foundEvent = null;
-        try {
-            foundEvent = await OutlookEvents.findById(args.id); 
-        } catch (e) {}
-        return foundEvent;
+        return await databaseClient.getEventById(args.id);
     }
 };
 

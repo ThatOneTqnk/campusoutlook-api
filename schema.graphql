@@ -14,6 +14,7 @@ type Event {
     description: String
     time: TimeInfo
     tags: [String!]
+    attendees: [String!]
 }
 
 type Query {
@@ -23,6 +24,7 @@ type Query {
 
 type Mutation {
     createEvent(name: String!, description: String!, timeobj: TimeInfoInput!, tags: [String!]): Event
+    joinEvent(userID: String!, eventID: String!): Boolean
 }
 
 type Subscription {

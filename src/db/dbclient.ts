@@ -1,3 +1,4 @@
+import OutlookEvents from './models/events';
 import mongoose from 'mongoose';
 
 export default class DatabaseClient {
@@ -6,5 +7,15 @@ export default class DatabaseClient {
         mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}).then((as) => {
             console.log('Connected to the database!');
         });
+    }
+
+    getEventById(id : string) {
+        return new Promise(async (resolve, reject) => {
+            let foundEvent = null;
+            try {
+                foundEvent = await OutlookEvents.findById(id); 
+            } catch (e) {}
+            resolve(foundEvent);
+        })
     }
 }
