@@ -34,6 +34,7 @@ type Event {
 type Query {
     events: [Event]
     event(id: String!): Event
+    tags: [String]
 }
 
 type Mutation {
