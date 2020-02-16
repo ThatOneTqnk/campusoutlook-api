@@ -55,7 +55,7 @@ let resolvers : IResolverObject = {
             outlookEvent = await OutlookEvents.create({name: args.name, description: args.description, time: {
                 start: args.timeobj.start,
                 end: args.timeobj.end
-            }, tags: normalizedTags, attendees: [], image_url: args.event_photo_url, location: args.location});
+            }, tags: normalizedTags, attendees: [], image_url: args.event_photo_url, location: args.location, link: (args.link) ? args.link : null});
             pubSub.publish(EVENT_ADDED, { eventFeed: args });
         } catch(e) {
             console.error(e);
