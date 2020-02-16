@@ -35,6 +35,8 @@ type Query {
     events: [Event]
     event(id: String!): Event
     tags: [String]
+    recommendedEvents(interests: [String!]): [Event]
+    eventsByTags(tags: [String!]): [Event]
 }
 
 type Mutation {

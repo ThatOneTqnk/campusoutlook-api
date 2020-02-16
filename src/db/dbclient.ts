@@ -20,4 +20,16 @@ export default class DatabaseClient {
             }); 
         })
     }
+
+    getEventsFromTags(tags: string[]) {
+        return new Promise(async (resolve, reject) => {
+            let taggedEvents;
+            try {
+              taggedEvents = await OutlookEvents.find({tags: {"$in": tags}});
+            } catch(e) {
+              return resolve(null);
+            }
+            resolve(taggedEvents);
+        });
+    }
 }

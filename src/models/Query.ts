@@ -25,6 +25,18 @@ let resolvers : IResolverObject = {
           tags = await OutlookEvents.distinct('tags');
         } catch(e) {return null}
         return tags;
+    },
+    recommendedEvents: async (parent, args) => {
+
+    },
+    eventsByTags: async (parent, args) => {
+        let events;
+        try {
+            events = await databaseClient.getEventsFromTags(args.tags);
+        } catch (e) {
+            return [];
+        }
+        return events;
     }
 };
 
