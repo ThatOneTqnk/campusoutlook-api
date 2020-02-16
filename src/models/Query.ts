@@ -16,8 +16,15 @@ let resolvers : IResolverObject = {
         let foundEvent;
         try {
             foundEvent = await OutlookEvents.findById(args.id); 
-        } catch (e) {}
+        } catch (e) {return null}
         return foundEvent;
+    },
+    tags: async (parent, args) => {
+        let tags;
+        try {
+          tags = await OutlookEvents.distinct('tags');
+        } catch(e) {return null}
+        return tags;
     }
 };
 
