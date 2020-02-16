@@ -30,6 +30,7 @@ type Event {
     tags: [String!]
     attendees: [Attendee!]
     image_url: String
+    location: String
 }
 
 type Query {
@@ -41,7 +42,7 @@ type Query {
 }
 
 type Mutation {
-    createEvent(name: String!, description: String!, timeobj: TimeInfoInput!, tags: [String!], event_photo_url: String!): Event
+    createEvent(name: String!, description: String!, timeobj: TimeInfoInput!, tags: [String!], event_photo_url: String!, location: String!): Event
     joinEvent(user: AttendeeInput!, eventID: String!): Boolean
 }
 
