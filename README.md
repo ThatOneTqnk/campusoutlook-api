@@ -1,12 +1,12 @@
-# campusoutlook-api
-Campus Outlook TS Apollo Backend
+# ucevents-api
+UCEvents TS Apollo Backend
 
 Setup
 
 1. Clone the repository
 ```
-git clone https://github.com/ThatOneTqnk/campusoutlook-api co-api
-cd co-api
+git clone https://github.com/ThatOneTqnk/ucevents-api uce-api
+cd uce-api
 ```
 
 2. Install dependencies
